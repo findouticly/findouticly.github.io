@@ -8,7 +8,6 @@ To use this calculator, simply input a number into the text field. The result wi
 
 ### Code
 
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,7 +42,6 @@ To use this calculator, simply input a number into the text field. The result wi
         <input type="number" id="inputNumber" placeholder="Enter a number" oninput="calculate()">
         <span class="result" id="result">Result: </span>
     </div>
-
     <script>
         function calculate() {
             const input = document.getElementById('inputNumber').value;
@@ -53,4 +51,3 @@ To use this calculator, simply input a number into the text field. The result wi
     </script>
 </body>
 </html>
-```
