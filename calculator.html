@@ -70,13 +70,13 @@
         .footer a:hover {
             text-decoration: underline;
         }
-        .add-btn {
+        .add-btn, .remove-btn {
             font-size: 30px;
             cursor: pointer;
             color: #e2c2ad;
             margin-top: 15px;
         }
-        .add-btn:hover {
+        .add-btn:hover, .remove-btn:hover {
             color: #f5d0a9;
         }
         .total-box {
@@ -94,7 +94,10 @@
                 <input type="number" class="inputNumber" oninput="calculateTotal()">
                 <span class="result">Result: 0</span>
             </div>
-            <div class="add-btn" onclick="addNewBox()">+</div>
+            <div>
+                <span class="add-btn" onclick="addNewBox()">+</span>
+                <span class="remove-btn" onclick="removeLastBox()">-</span>
+            </div>
             <div id="totalBox" class="total-box">TOTAL: 0</div>
         </div>
     </div>
@@ -130,8 +133,17 @@
 
             boxContainer.appendChild(newInput);
             boxContainer.appendChild(newResult);
-            document.querySelector('.calculator').insertBefore(boxContainer, document.querySelector('.add-btn'));
+            document.querySelector('.calculator').insertBefore(boxContainer, document.querySelector('.add-btn').parentElement);
             calculateTotal(); // Recalculate after adding the new box
+        }
+
+        function removeLastBox() {
+            const boxContainers = document.querySelectorAll('.box-container');
+            if (boxContainers.length > 1) { // Keep at least one input box
+                const lastBox = boxContainers[boxContainers.length - 1];
+                lastBox.remove();
+                calculateTotal(); // Recalculate total after removal
+            }
         }
     </script>
 </body>
