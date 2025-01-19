@@ -26,6 +26,7 @@
             border-radius: 15px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(10px);
+            width: 300px;
         }
         input[type="number"] {
             padding: 12px;
@@ -36,6 +37,7 @@
             background: #5a4635;
             color: #ffffff;
             box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
+            margin-bottom: 15px;
         }
         input[type="number"]:focus {
             outline: none;
@@ -77,28 +79,48 @@
         button:hover {
             background-color: #a4755d;
         }
+        .add-btn {
+            font-size: 30px;
+            cursor: pointer;
+            color: #e2c2ad;
+            margin-top: 15px;
+        }
+        .add-btn:hover {
+            color: #f5d0a9;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="calculator">
-            <input type="number" id="inputNumber" placeholder="Enter a number" oninput="calculate()">
-            <span class="result" id="result">Result: </span>
-            <button onclick="clearInput()">Clear</button>
+        <div class="calculator" id="calculator">
+            <input type="number" class="inputNumber" oninput="calculateTotal()">
+            <span class="result">Result: </span>
+            <div class="add-btn" onclick="addNewBox()">+</div>
+            <div id="totalBox" class="result">TOTAL: 0</div>
         </div>
     </div>
     <div class="footer">made by <a href="https://github.com/findouticly" target="_blank">findouticly</a></div>
 
     <script>
-        function calculate() {
-            const input = document.getElementById('inputNumber').value;
-            const result = input * 12500;
-            document.getElementById('result').textContent = `Result: ${result}`;
+        let total = 0;
+
+        function calculateTotal() {
+            total = 0;
+            const inputNumbers = document.querySelectorAll('.inputNumber');
+            inputNumbers.forEach(input => {
+                const value = parseFloat(input.value) || 0;
+                total += value * 12500;
+            });
+            document.getElementById('totalBox').textContent = `TOTAL: ${total}`;
         }
 
-        function clearInput() {
-            document.getElementById('inputNumber').value = '';
-            document.getElementById('result').textContent = 'Result: ';
+        function addNewBox() {
+            const newInput = document.createElement('input');
+            newInput.type = 'number';
+            newInput.className = 'inputNumber';
+            newInput.oninput = calculateTotal;
+            document.querySelector('.calculator').insertBefore(newInput, document.querySelector('.add-btn'));
+            calculateTotal(); // Recalculate after adding the new box
         }
     </script>
 </body>
