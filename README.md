@@ -6,9 +6,6 @@ This is a simple HTML calculator that allows the user to input a single number. 
 
 To use this calculator, simply input a number into the text field. The result will be displayed dynamically as you type.
 
-### Code
-
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
