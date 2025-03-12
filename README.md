@@ -1,4 +1,4 @@
-# Single Input Calculator
+# 11/7 PAYCHECK CALCULATOR
 
 This is a simple HTML calculator that was made for 11/7. Inside of it, there is an imput box, where you can input the number of quotas.
 
